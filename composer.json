@@ -8,7 +8,7 @@
     "require": {
         "php":                                  "~7.4||~8.0",
         "ext-json":                             "*",
-        "marfatech/swagger-resolver-bundle":      "^0.4.10",
+        "wakeapp/swagger-resolver-bundle":      "dev-DEV-16@dev",
         "psr/log":                              "^1.0",
         "symfony/config":                       "~3.4||~4.0||~5.0",
         "symfony/dependency-injection":         "~3.4||~4.0||~5.0",
