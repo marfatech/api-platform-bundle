@@ -1,5 +1,8 @@
 ## [Unreleased]
 ## Changed
+- Updated `php` with pattern version `~7.4||~8.0`.
+- Updated `marfatech/dto-resolver` with pattern version `^2.0`.
+- Updated composer name from `wakeapp/api-platform-bundle` to `marfatech/api-platform-bundle`.
 - [BC BREAK] Refactoring namespace to `MarfaTech`.
 - [BC BREAK] Renamed root config `wakeapp_api_platform` to `marfatech_api_platform`.
 - [BC BREAK] Renamed service `wakeapp_api_platform.factory.api_dto` to `marfatech_api_platform.factory.api_dto`.
