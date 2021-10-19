@@ -5,14 +5,15 @@ declare(strict_types=1);
 /*
  * This file is part of the ApiPlatformBundle package.
  *
- * (c) Wakeapp <https://wakeapp.ru>
+ * (c) MarfaTech <https://marfa-tech.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Wakeapp\Bundle\ApiPlatformBundle\Guesser;
+namespace MarfaTech\Bundle\ApiPlatformBundle\Guesser;
 
+use MarfaTech\Bundle\ApiPlatformBundle\Exception\ApiException;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\ConflictHttpException;
@@ -23,7 +24,6 @@ use Symfony\Component\HttpKernel\Exception\PreconditionFailedHttpException;
 use Symfony\Component\HttpKernel\Exception\ServiceUnavailableHttpException;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use Throwable;
-use Wakeapp\Bundle\ApiPlatformBundle\Exception\ApiException;
 
 class ApiErrorCodeGuesser implements ApiErrorCodeGuesserInterface
 {

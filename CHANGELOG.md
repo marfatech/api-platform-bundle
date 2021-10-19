@@ -1,4 +1,18 @@
 ## [Unreleased]
+## Changed
+- Updated `php` with pattern version `~7.4||~8.0`.
+- Updated `marfatech/dto-resolver` with pattern version `^2.0`.
+- Updated composer name from `wakeapp/api-platform-bundle` to `marfatech/api-platform-bundle`.
+- [BC BREAK] Refactoring namespace to `MarfaTech`.
+- [BC BREAK] Renamed root config `wakeapp_api_platform` to `marfatech_api_platform`.
+- [BC BREAK] Renamed service `wakeapp_api_platform.factory.api_dto` to `marfatech_api_platform.factory.api_dto`.
+- [BC BREAK] Renamed parameter `wakeapp_api_platform.error_code_guesser_service` to `marfatech_api_platform.error_code_guesser_service`.
+- [BC BREAK] Renamed parameter `wakeapp_api_platform.response_debug` to `marfatech_api_platform.response_debug`.
+- [BC BREAK] Renamed parameter `wakeapp_api_platform.api_result_dto_class` to `marfatech_api_platform.api_result_dto_class`.
+- [BC BREAK] Renamed parameter `wakeapp_api_platform.api_area_guesser_service` to `marfatech_api_platform.api_area_guesser_service`.
+- [BC BREAK] Renamed parameter `wakeapp_api_platform.error_code_guesser_service` to `marfatech_api_platform.error_code_guesser_service`.
+- [BC BREAK] Renamed parameter `wakeapp_api_platform.minimal_api_version` to `marfatech_api_platform.minimal_api_version`.
+- [BC BREAK] Renamed logger channel `wakeapp_api_platform` to `marfatech_api_platform`.
 
 ## [2.0.13] - 2021-02-24
 ### Added
