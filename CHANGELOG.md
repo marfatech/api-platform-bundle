@@ -12,7 +12,8 @@
 - [BC BREAK] Renamed parameter `wakeapp_api_platform.api_area_guesser_service` to `marfatech_api_platform.api_area_guesser_service`.
 - [BC BREAK] Renamed parameter `wakeapp_api_platform.error_code_guesser_service` to `marfatech_api_platform.error_code_guesser_service`.
 - [BC BREAK] Renamed parameter `wakeapp_api_platform.minimal_api_version` to `marfatech_api_platform.minimal_api_version`.
-- [BC BREAK] Renamed logger channel `wakeapp_api_platform` to `marfatech_api_platform` .
+- [BC BREAK] Renamed logger channel `wakeapp_api_platform` to `marfatech_api_platform`.
+
 ## [2.0.13] - 2021-02-24
 ### Added
 - Support PHP ~8.0.
