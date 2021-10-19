@@ -1,4 +1,6 @@
 ## [Unreleased]
+
+## [3.0.0]
 ## Changed
 - Updated `php` with pattern version `~7.4||~8.0`.
 - Updated `marfatech/dto-resolver` with pattern version `^2.0`.
