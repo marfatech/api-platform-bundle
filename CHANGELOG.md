@@ -1,4 +1,6 @@
 ## [Unreleased]
+### Fixed
+- Fixed case mismatch between loaded and declared class names: `MarfatechApiPlatformExtension` vs `MarfaTechApiPlatformExtension`.
 
 ## [3.0.0]
 ## Changed
