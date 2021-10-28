@@ -1,8 +1,10 @@
 ## [Unreleased]
+
+## [3.0.1] - 2021-10-28
 ### Fixed
 - Fixed case mismatch between loaded and declared class names: `MarfatechApiPlatformExtension` vs `MarfaTechApiPlatformExtension`.
 
-## [3.0.0]
+## [3.0.0] - 2021-10-19
 ## Changed
 - Updated `php` with pattern version `~7.4||~8.0`.
 - Updated `marfatech/dto-resolver` with pattern version `^2.0`.
