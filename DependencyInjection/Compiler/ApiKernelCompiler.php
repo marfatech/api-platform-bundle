@@ -30,8 +30,8 @@ class ApiKernelCompiler implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container): void
     {
-        $apiAreaId = $container->getParameter('marfatech_api_platform.api_area_guesser_service');
-        $container->getParameterBag()->remove('marfatech_api_platform.api_area_guesser_service');
+        $apiAreaId = $container->getParameter('marfa_tech_api_platform.api_area_guesser_service');
+        $container->getParameterBag()->remove('marfa_tech_api_platform.api_area_guesser_service');
 
         if (!$container->hasDefinition($apiAreaId)) {
             throw new ServiceNotFoundException($apiAreaId, ApiKernel::class);

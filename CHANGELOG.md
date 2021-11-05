@@ -1,4 +1,15 @@
 ## [Unreleased]
+## Changed
+- Renamed prefix bundle and extension names `Marfatech` to `MarfaTech`.
+- Renamed root config `marfatech_api_platform` to `marfa_tech_api_platform`.
+- Renamed service `marfatech_api_platform.factory.api_dto` to `marfa_tech_api_platform.factory.api_dto`.
+- Renamed parameter `marfatech_api_platform.error_code_guesser_service` to `marfa_tech_api_platform.error_code_guesser_service`.
+- Renamed parameter `marfatech_api_platform.response_debug` to `marfa_tech_api_platform.response_debug`.
+- Renamed parameter `marfatech_api_platform.api_result_dto_class` to `marfa_tech_api_platform.api_result_dto_class`.
+- Renamed parameter `marfatech_api_platform.api_area_guesser_service` to `marfa_tech_api_platform.api_area_guesser_service`.
+- Renamed parameter `marfatech_api_platform.error_code_guesser_service` to `marfa_tech_api_platform.error_code_guesser_service`.
+- Renamed parameter `marfatech_api_platform.minimal_api_version` to `marfa_tech_api_platform.minimal_api_version`.
+- Renamed logger channel `marfatech_api_platform` to `marfa_tech_api_platform`.
 
 ## [3.0.1] - 2021-10-28
 ### Fixed
