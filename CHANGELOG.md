@@ -1,4 +1,6 @@
 ## [Unreleased]
+
+## [3.0.2] - 2021-11-08
 ## Changed
 - Renamed prefix bundle and extension names `Marfatech` to `MarfaTech`.
 - Renamed root config `marfatech_api_platform` to `marfa_tech_api_platform`.
