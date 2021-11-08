@@ -18,7 +18,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
-class MarfatechApiPlatformExtension extends Extension
+class MarfaTechApiPlatformExtension extends Extension
 {
     /**
      * {@inheritdoc}
@@ -28,14 +28,14 @@ class MarfatechApiPlatformExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $container->setParameter('marfatech_api_platform.api_result_dto_class', $config['api_result_dto_class']);
-        $container->setParameter('marfatech_api_platform.api_area_guesser_service', $config['api_area_guesser_service']);
+        $container->setParameter('marfa_tech_api_platform.api_result_dto_class', $config['api_result_dto_class']);
+        $container->setParameter('marfa_tech_api_platform.api_area_guesser_service', $config['api_area_guesser_service']);
         $container->setParameter(
-            'marfatech_api_platform.error_code_guesser_service',
+            'marfa_tech_api_platform.error_code_guesser_service',
             $config['error_code_guesser_service']
         );
-        $container->setParameter('marfatech_api_platform.response_debug', $config['response_debug']);
-        $container->setParameter('marfatech_api_platform.minimal_api_version', $config['minimal_api_version']);
+        $container->setParameter('marfa_tech_api_platform.response_debug', $config['response_debug']);
+        $container->setParameter('marfa_tech_api_platform.minimal_api_version', $config['minimal_api_version']);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yaml');

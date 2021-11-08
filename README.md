@@ -52,7 +52,7 @@ class AppKernel extends Kernel
             // ...
 
             new Linkin\Bundle\SwaggerResolverBundle\LinkinSwaggerResolverBundle(),
-            new MarfaTech\Bundle\ApiPlatformBundle\MarfatechApiPlatformBundle(),
+            new MarfaTech\Bundle\ApiPlatformBundle\MarfaTechApiPlatformBundle(),
         ];
 
         return $bundles;
@@ -111,7 +111,7 @@ class ApiAreaGuesser implements ApiAreaGuesserInterface
 
 ```yaml
 # app/config.yml
-marfatech_api_platform:
+marfa_tech_api_platform:
     api_area_guesser_service:   App\Guesser\ApiAreaGuesser
 ```
 
@@ -119,7 +119,7 @@ marfatech_api_platform:
 
 ```yaml
 # app/config.yml
-marfatech_api_platform:
+marfa_tech_api_platform:
     # полное имя класса DTO для стандартизации ответа
     api_result_dto_class:       MarfaTech\Bundle\ApiPlatformBundle\Dto\ApiResultDto
 
@@ -418,7 +418,7 @@ class ApiResultDto extends BaseApiResultDto
 
 ```yaml
 # app/config.yml
-marfatech_api_platform:
+marfa_tech_api_platform:
     api_result_dto_class:       App\Dto\MyApiResultDto
 ```
 

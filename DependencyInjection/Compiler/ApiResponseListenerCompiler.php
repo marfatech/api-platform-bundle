@@ -24,11 +24,11 @@ class ApiResponseListenerCompiler implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container): void
     {
-        $responseDebug = $container->getParameter('marfatech_api_platform.response_debug');
-        $container->getParameterBag()->remove('marfatech_api_platform.response_debug');
+        $responseDebug = $container->getParameter('marfa_tech_api_platform.response_debug');
+        $container->getParameterBag()->remove('marfa_tech_api_platform.response_debug');
 
-        $apiResultDtoClass = $container->getParameter('marfatech_api_platform.api_result_dto_class');
-        $container->getParameterBag()->remove('marfatech_api_platform.api_result_dto_class');
+        $apiResultDtoClass = $container->getParameter('marfa_tech_api_platform.api_result_dto_class');
+        $container->getParameterBag()->remove('marfa_tech_api_platform.api_result_dto_class');
 
         $listenerDefinition = $container->getDefinition(ApiResponseListener::class);
         $listenerDefinition

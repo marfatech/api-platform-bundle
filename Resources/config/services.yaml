@@ -14,7 +14,7 @@ services:
     MarfaTech\Bundle\ApiPlatformBundle\EventListener\ApiResponseListener:
         class:      MarfaTech\Bundle\ApiPlatformBundle\EventListener\ApiResponseListener
         arguments:
-            - '@marfatech_api_platform.guesser.api_error_code'
+            - '@marfa_tech_api_platform.guesser.api_error_code'
             - '@MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoFactory'
             - '@?Symfony\Component\Translation\TranslatorInterface'
         calls:
@@ -25,7 +25,7 @@ services:
 
     MarfaTech\Bundle\ApiPlatformBundle\EventListener\MinimalApiVersionRequestListener:
         arguments:
-            - '%marfatech_api_platform.minimal_api_version%'
+            - '%marfa_tech_api_platform.minimal_api_version%'
         tags:
             - { name: kernel.event_listener, event: kernel.request, priority: 128 }
 
@@ -33,11 +33,11 @@ services:
         class:      MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoFactory
         arguments:
             - '@Linkin\Bundle\SwaggerResolverBundle\Factory\SwaggerResolverFactory'
-    marfatech_api_platform.factory.api_dto:
+    marfa_tech_api_platform.factory.api_dto:
         alias:      MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoFactory
 
     MarfaTech\Bundle\ApiPlatformBundle\Logger\ApiPlatformLogger:
         arguments:
             - '@?logger'
         tags:
-            - { name: 'monolog.logger', channel: 'marfatech_api_platform' }
+            - { name: 'monolog.logger', channel: 'marfa_tech_api_platform' }

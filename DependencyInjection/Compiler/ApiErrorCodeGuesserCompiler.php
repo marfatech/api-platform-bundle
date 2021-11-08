@@ -32,8 +32,8 @@ class ApiErrorCodeGuesserCompiler implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container): void
     {
-        $guesserId = $container->getParameter('marfatech_api_platform.error_code_guesser_service');
-        $container->getParameterBag()->remove('marfatech_api_platform.error_code_guesser_service');
+        $guesserId = $container->getParameter('marfa_tech_api_platform.error_code_guesser_service');
+        $container->getParameterBag()->remove('marfa_tech_api_platform.error_code_guesser_service');
 
         if (empty($guesserId)) {
             $guesserId = ApiErrorCodeGuesser::class;

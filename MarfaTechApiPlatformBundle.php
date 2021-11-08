@@ -19,7 +19,7 @@ use MarfaTech\Bundle\ApiPlatformBundle\DependencyInjection\Compiler\ApiResponseL
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class MarfatechApiPlatformBundle extends Bundle
+class MarfaTechApiPlatformBundle extends Bundle
 {
     /**
      * {@inheritdoc}
