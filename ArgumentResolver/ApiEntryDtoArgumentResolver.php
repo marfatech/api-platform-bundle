@@ -23,8 +23,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Controller\ArgumentValueResolverInterface;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
 use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
+use Symfony\Component\Validator\Exception\ValidationFailedException;
 
 use function is_subclass_of;
+use function sprintf;
 
 class ApiEntryDtoArgumentResolver implements ArgumentValueResolverInterface
 {
@@ -59,6 +61,18 @@ class ApiEntryDtoArgumentResolver implements ArgumentValueResolverInterface
     {
         try {
             $resolvedArgument = $this->factory->createApiDtoByRequest($argument->getType(), $request);
+        } catch (ValidationFailedException $e) {
+            $violationList = $e->getViolations();
+
+            $violation = $violationList->has(0) ? $violationList->get(0) : null;
+
+            if ($violation) {
+                $message = sprintf('%s: %s', $violation->getInvalidValue(), $violation->getMessage());
+            } else {
+                $message = (string) $e;
+            }
+
+            throw new ApiException(ApiException::HTTP_BAD_REQUEST_DATA, $message);
         } catch (Exception|InvalidOptionsException $e) {
             throw new ApiException(ApiException::HTTP_BAD_REQUEST_DATA, $e->getMessage());
         }

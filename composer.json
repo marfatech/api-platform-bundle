@@ -18,6 +18,10 @@
         "marfatech/dto-resolver":               "^2.0"
     },
 
+    "require-dev": {
+        "symfony/validator":                    "^6.0"
+    },
+
     "repositories" : [
         {
             "type": "vcs",
@@ -31,7 +35,8 @@
 
     "suggest": {
         "symfony/monolog-bundle":   "Provides possibility for log information into separate channel",
-        "symfony/translation":      "Provides possibility for translate response codes"
+        "symfony/translation":      "Provides possibility for translate response codes",
+        "symfony/validator":        "Provides possibility for catch constraint validation"
     },
 
     "autoload": {
