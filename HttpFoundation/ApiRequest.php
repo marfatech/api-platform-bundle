@@ -74,7 +74,7 @@ class ApiRequest extends Request
     /**
      * {@inheritdoc}
      */
-    public function get($key, $default = null)
+    public function get($key, $default = null): mixed
     {
         if ($this !== $result = $this->body->get($key, $this)) {
             return $result;
@@ -119,7 +119,7 @@ class ApiRequest extends Request
         ?array $files = null,
         ?array $server = null,
         ?string $content = null
-    ): self {
+    ): static {
         /** @var self $duplicate */
         $duplicate = parent::duplicate($query, $request, $attributes, $cookies, $files, $server);
 
