@@ -19,7 +19,9 @@
     },
 
     "require-dev": {
-        "symfony/validator":                    "^6.0"
+        "symfony/validator":                    "^6.0",
+        "symfony/monolog-bundle":               "^3.7",
+        "symfony/translation":                  "^6.0"
     },
 
     "repositories" : [

@@ -13,23 +13,29 @@ declare(strict_types=1);
 
 namespace MarfaTech\Bundle\ApiPlatformBundle\ArgumentResolver;
 
-use Exception;
 use Generator;
 use MarfaTech\Bundle\ApiPlatformBundle\Exception\ApiException;
 use MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoFactory;
 use MarfaTech\Bundle\ApiPlatformBundle\HttpFoundation\ApiRequest;
 use MarfaTech\Component\DtoResolver\Dto\DtoResolverInterface;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerAwareTrait;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Controller\ArgumentValueResolverInterface;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
 use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 use Symfony\Component\Validator\Exception\ValidationFailedException;
+use Throwable;
 
+use function array_key_first;
 use function is_subclass_of;
+use function iterator_to_array;
 use function sprintf;
 
-class ApiEntryDtoArgumentResolver implements ArgumentValueResolverInterface
+class ApiEntryDtoArgumentResolver implements ArgumentValueResolverInterface, LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     /**
      * @var ApiDtoFactory
      */
@@ -62,19 +68,32 @@ class ApiEntryDtoArgumentResolver implements ArgumentValueResolverInterface
         try {
             $resolvedArgument = $this->factory->createApiDtoByRequest($argument->getType(), $request);
         } catch (ValidationFailedException $e) {
-            $violationList = $e->getViolations();
+            $violationList = iterator_to_array($e->getViolations());
+            $violation = $violationList[array_key_first($violationList)];
 
-            $violation = $violationList->has(0) ? $violationList->get(0) : null;
+            $propertyPath = $violation->getPropertyPath();
+            $invalidValue = $violation->getInvalidValue();
+            $root = $violation->getRoot();
 
-            if ($violation) {
-                $message = sprintf('%s: %s', $violation->getInvalidValue(), $violation->getMessage());
+            if ($propertyPath || $root || $invalidValue) {
+                $message = sprintf(
+                    '%s: %s',
+                    $propertyPath ?: $root ?: $invalidValue,
+                    $violation->getMessage()
+                );
             } else {
-                $message = (string) $e;
+                $message = $violation->getMessage();
             }
 
             throw new ApiException(ApiException::HTTP_BAD_REQUEST_DATA, $message);
-        } catch (Exception|InvalidOptionsException $e) {
+        } catch (InvalidOptionsException $e) {
             throw new ApiException(ApiException::HTTP_BAD_REQUEST_DATA, $e->getMessage());
+        } catch (Throwable $e) {
+            if ($this->logger) {
+                $this->logger->notice('Unexpected error while argument resolving', [$e]);
+            }
+
+            throw new ApiException(ApiException::HTTP_BAD_REQUEST_DATA);
         }
 
         yield $resolvedArgument;
