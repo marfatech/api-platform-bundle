@@ -2,12 +2,16 @@ services:
     MarfaTech\Bundle\ApiPlatformBundle\ArgumentResolver\ApiCollectionEntryDtoArgumentResolver:
         arguments:
             - '@MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoFactory'
+        calls:
+            - [ 'setLogger', [ '@MarfaTech\Bundle\ApiPlatformBundle\Logger\ApiPlatformLogger' ] ]
         tags:
             - { name: controller.argument_value_resolver, priority: 250 }
 
     MarfaTech\Bundle\ApiPlatformBundle\ArgumentResolver\ApiEntryDtoArgumentResolver:
         arguments:
             - '@MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoFactory'
+        calls:
+            - [ 'setLogger', [ '@MarfaTech\Bundle\ApiPlatformBundle\Logger\ApiPlatformLogger' ] ]
         tags:
             - { name: controller.argument_value_resolver, priority: 250 }
 
@@ -16,7 +20,7 @@ services:
         arguments:
             - '@marfa_tech_api_platform.guesser.api_error_code'
             - '@MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoFactory'
-            - '@?Symfony\Component\Translation\TranslatorInterface'
+            - '@?translator'
         calls:
             - ['setLogger', ['@MarfaTech\Bundle\ApiPlatformBundle\Logger\ApiPlatformLogger']]
         tags:

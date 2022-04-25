@@ -1,4 +1,10 @@
 ## [Unreleased]
+## Added
+- Handling `Symfony\Component\Validator\Exception\ValidationFailedException` while resolving entryDto if you prefer to use constraints from `symfony/validation`.
+- Logging `Throwable` exception while controller argument resolving.
+## Changed
+- Catch `Throwable` insteadof `Exception` while controller argument resolving.
+- Service translator class name alias `Symfony\Component\Translation\TranslatorInterface` change to service id `translator`.
 
 ## [3.0.2] - 2021-11-08
 ## Changed
