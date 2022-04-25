@@ -10,11 +10,11 @@
         "ext-json":                             "*",
         "marfatech/swagger-resolver-bundle":    "^0.4.10",
         "psr/log":                              "^1.0",
-        "symfony/config":                       "~6.0",
-        "symfony/dependency-injection":         "~6.0",
-        "symfony/http-foundation":              "~6.0",
-        "symfony/http-kernel":                  "~6.0",
-        "symfony/translation-contracts":        "^1.1||^2.2",
+        "symfony/config":                       "~4.4||~5.4||~6.0",
+        "symfony/dependency-injection":         "~4.4||~5.4||~6.0",
+        "symfony/http-foundation":              "~4.4||~5.4||~6.0",
+        "symfony/http-kernel":                  "~4.4||~5.4||~6.0",
+        "symfony/translation-contracts":        "^1.1||^2.2||^3.0",
         "marfatech/dto-resolver":               "^2.0"
     },
 
