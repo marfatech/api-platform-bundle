@@ -18,9 +18,12 @@
     },
 
     "require-dev": {
-        "phpunit/phpunit":              "^9.5",
-        "symfony/phpunit-bridge":       "^6.0",
-        "symfony/yaml":                 "~4.4||~5.4||~6.0"
+        "phpunit/phpunit":                      "^9.5",
+        "symfony/phpunit-bridge":               "^6.0",
+        "symfony/yaml":                         "~4.4||~5.4||~6.0",
+        "symfony/validator":                    "^6.0",
+        "symfony/monolog-bundle":               "^3.7",
+        "symfony/translation":                  "^6.0"
     },
 
     "conflict": {
@@ -30,7 +33,8 @@
     "suggest": {
         "marfatech/swagger-resolver-bundle": "Provides possibility to resolve api entry dto by swagger definition",
         "symfony/monolog-bundle":   "Provides possibility for log information into separate channel",
-        "symfony/translation":      "Provides possibility for translate response codes"
+        "symfony/translation":      "Provides possibility for translate response codes",
+        "symfony/validator":        "Provides possibility for catch constraint validation"
     },
 
     "autoload": {

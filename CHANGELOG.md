@@ -7,6 +7,14 @@
 - Updated `symfony/*` with pattern version `~4.4||~5.4||~6.0`.
 - Moved `marfatech/swagger-resolver-bundle` from required to suggested
 
+## [3.1.0] - 2022-05-17
+## Added
+- Handling `Symfony\Component\Validator\Exception\ValidationFailedException` while resolving entryDto if you prefer to use constraints from `symfony/validation`.
+- Logging `Throwable` exception while controller argument resolving.
+## Changed
+- Catch `Throwable` insteadof `Exception` while controller argument resolving.
+- Service translator class name alias `Symfony\Component\Translation\TranslatorInterface` change to service id `translator`.
+
 ## [3.0.2] - 2021-11-08
 ## Changed
 - Renamed prefix bundle and extension names `Marfatech` to `MarfaTech`.
