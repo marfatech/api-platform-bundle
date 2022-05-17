@@ -1,9 +1,11 @@
 ## [Unreleased]
 ### Added
 - Symfony 6 support
+- Test for `ApiDtoFactory`
 ## Changed
 - Updated `php` with pattern version `~8.0`.
 - Updated `symfony/*` with pattern version `~4.4||~5.4||~6.0`.
+- Moved `marfatech/swagger-resolver-bundle` from required to suggested
 
 ## [3.0.2] - 2021-11-08
 ## Changed

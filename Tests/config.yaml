@@ -1,0 +1,16 @@
+# Tests/config.yml
+marfa_tech_api_platform:
+    # полное имя класса DTO для стандартизации ответа
+    api_result_dto_class:       MarfaTech\Bundle\ApiPlatformBundle\Dto\ApiResultDto
+
+    # идентификатор сервиса для определения зоны API
+    api_area_guesser_service:   MarfaTech\Bundle\ApiPlatformBundle\Guesser\ApiAreaGuesser
+
+    # идентификатор сервиса для глобального отлавливания ошибок и выдачи специализированных сообщений вместо 500
+    error_code_guesser_service: MarfaTech\Bundle\ApiPlatformBundle\Guesser\ApiErrorCodeGuesser
+
+    # Минимально допустимая версия API.
+    minimal_api_version:        1
+
+    # флаг для отладки ошибок - если установлен в true - ответ ошибки содержит trace.
+    response_debug:             false

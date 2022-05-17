@@ -1,0 +1,12 @@
+services:
+    MarfaTech\Bundle\ApiPlatformBundle\Guesser\ApiErrorCodeGuesser:
+        class: MarfaTech\Bundle\ApiPlatformBundle\Guesser\ApiErrorCodeGuesser
+
+    MarfaTech\Bundle\ApiPlatformBundle\Guesser\ApiAreaGuesser:
+        class: MarfaTech\Bundle\ApiPlatformBundle\Guesser\ApiAreaGuesser
+
+    http_kernel:
+
+    MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoFactory:
+        public: true
+        autowire: true

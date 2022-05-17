@@ -1,0 +1,29 @@
+name: PHPUnit
+
+on: [pull_request]
+
+jobs:
+  run:
+    runs-on: 'ubuntu-latest'
+    strategy:
+      matrix:
+        php-versions: ['8.0', '8.1']
+        symfony-versions: ['~4.4', '~5.4', '~6.0']
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          tools: composer
+
+      - name: Composer install and lock options resolver
+        run: |
+          composer require symfony/options-resolver:${{ matrix.symfony-versions }}
+
+      - name: Run tests
+        run: |
+          ./vendor/bin/phpunit

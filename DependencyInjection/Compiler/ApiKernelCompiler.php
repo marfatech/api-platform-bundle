@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace MarfaTech\Bundle\ApiPlatformBundle\DependencyInjection\Compiler;
 
+use Exception;
 use MarfaTech\Bundle\ApiPlatformBundle\Guesser\ApiAreaGuesserInterface;
 use MarfaTech\Bundle\ApiPlatformBundle\HttpFoundation\ApiKernel;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
