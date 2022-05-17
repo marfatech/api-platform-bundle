@@ -22,7 +22,10 @@ jobs:
 
       - name: Composer install and lock options resolver
         run: |
-          composer require symfony/options-resolver:${{ matrix.symfony-versions }} symfony/http-kernel:${{ matrix.symfony-versions }}
+          composer require symfony/options-resolver:${{ matrix.symfony-versions }} \
+          symfony/http-kernel:${{ matrix.symfony-versions }} \
+          symfony/http-foundation:${{ matrix.symfony-versions }} \
+          symfony/dependency-injection:${{ matrix.symfony-versions }}
 
       - name: Run tests
         run: |
