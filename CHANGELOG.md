@@ -1,4 +1,6 @@
 ## [Unreleased]
+
+## [3.1.0] - 2022-05-17
 ## Added
 - Handling `Symfony\Component\Validator\Exception\ValidationFailedException` while resolving entryDto if you prefer to use constraints from `symfony/validation`.
 - Logging `Throwable` exception while controller argument resolving.
