@@ -2,8 +2,8 @@ services:
     MarfaTech\Bundle\ApiPlatformBundle\Guesser\ApiErrorCodeGuesser:
         class: MarfaTech\Bundle\ApiPlatformBundle\Guesser\ApiErrorCodeGuesser
 
-    MarfaTech\Bundle\ApiPlatformBundle\Guesser\ApiAreaGuesser:
-        class: MarfaTech\Bundle\ApiPlatformBundle\Guesser\ApiAreaGuesser
+    MarfaTech\Bundle\ApiPlatformBundle\Guesser\DummyApiAreaGuesser:
+        class: MarfaTech\Bundle\ApiPlatformBundle\Guesser\DummyApiAreaGuesser
 
     http_kernel:
 
