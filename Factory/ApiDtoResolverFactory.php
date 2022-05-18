@@ -22,7 +22,7 @@ use Symfony\Component\HttpFoundation\Request;
 use function is_subclass_of;
 use function sprintf;
 
-class ApiDtoResolverFactory
+class ApiDtoResolverFactory extends ApiDtoFactory
 {
     private ResolverFactoryInterface $resolverFactory;
 

@@ -23,7 +23,7 @@ use function is_subclass_of;
 use function sprintf;
 
 /**
- * @deprecated since 3.2, use MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoResolverFactory instead.
+ * @deprecated since 3.2, to be removed in 4.0, use MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoResolverFactory instead.
  */
 class ApiDtoFactory
 {
