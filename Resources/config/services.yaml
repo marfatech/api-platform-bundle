@@ -1,7 +1,7 @@
 services:
     MarfaTech\Bundle\ApiPlatformBundle\ArgumentResolver\ApiCollectionEntryDtoArgumentResolver:
         arguments:
-            - '@MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoFactory'
+            - '@MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoResolverFactory'
         calls:
             - [ 'setLogger', [ '@MarfaTech\Bundle\ApiPlatformBundle\Logger\ApiPlatformLogger' ] ]
         tags:
@@ -9,7 +9,7 @@ services:
 
     MarfaTech\Bundle\ApiPlatformBundle\ArgumentResolver\ApiEntryDtoArgumentResolver:
         arguments:
-            - '@MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoFactory'
+            - '@MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoResolverFactory'
         calls:
             - [ 'setLogger', [ '@MarfaTech\Bundle\ApiPlatformBundle\Logger\ApiPlatformLogger' ] ]
         tags:
@@ -19,7 +19,7 @@ services:
         class:      MarfaTech\Bundle\ApiPlatformBundle\EventListener\ApiResponseListener
         arguments:
             - '@marfa_tech_api_platform.guesser.api_error_code'
-            - '@MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoFactory'
+            - '@MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoResolverFactory'
             - '@?translator'
         calls:
             - ['setLogger', ['@MarfaTech\Bundle\ApiPlatformBundle\Logger\ApiPlatformLogger']]
@@ -36,9 +36,15 @@ services:
     MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoFactory:
         class:      MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoFactory
         arguments:
-            - '@Linkin\Bundle\SwaggerResolverBundle\Factory\SwaggerResolverFactory'
+            - '@MarfaTech\Bundle\ApiPlatformBundle\Factory\ResolverFactoryInterface'
+
+    MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoResolverFactory:
+        class:      MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoResolverFactory
+        arguments:
+            - '@MarfaTech\Bundle\ApiPlatformBundle\Factory\ResolverFactoryInterface'
+
     marfa_tech_api_platform.factory.api_dto:
-        alias:      MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoFactory
+        alias:      MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoResolverFactory
 
     MarfaTech\Bundle\ApiPlatformBundle\Logger\ApiPlatformLogger:
         arguments:

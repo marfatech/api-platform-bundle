@@ -1,4 +1,11 @@
 ## [Unreleased]
+### Added
+- File `.phpstorm.meta.php` idea friendly.
+- Installed `symfony/options-resolver` to the `~3.4||~4.0||~5.0` pattern version.
+### Changed
+- Factory `MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoFactory` is deprecated.
+### Removed
+- Deleted `marfatech/swagger-resolver-bundle`.
 
 ## [3.1.0] - 2022-05-17
 ## Added
