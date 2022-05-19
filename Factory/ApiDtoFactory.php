@@ -25,7 +25,7 @@ use function sprintf;
 /**
  * @deprecated since 3.2, to be removed in 4.0, use MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoResolverFactory instead.
  */
-class ApiDtoFactory
+class ApiDtoFactory implements ApiDtoResolverFactoryInterface
 {
     /**
      * @var SwaggerResolverFactory
@@ -41,9 +41,7 @@ class ApiDtoFactory
     }
 
     /**
-     * @param string $className
-     *
-     * @return CollectionDtoResolverInterface
+     * {@inheritDoc}
      */
     public function createApiCollectionDto(string $className): CollectionDtoResolverInterface
     {
@@ -61,10 +59,7 @@ class ApiDtoFactory
     }
 
     /**
-     * @param string $className
-     * @param array $data
-     *
-     * @return DtoResolverInterface
+     * {@inheritDoc}
      */
     public function createApiDto(string $className, array $data): DtoResolverInterface
     {
@@ -81,12 +76,7 @@ class ApiDtoFactory
     }
 
     /**
-     * @param string $className
-     * @param ApiRequest $request
-     * @param bool $withHeaders
-     * @param bool $withFiles
-     *
-     * @return DtoResolverInterface
+     * {@inheritDoc}
      */
     public function createApiDtoByRequest(
         string $className,

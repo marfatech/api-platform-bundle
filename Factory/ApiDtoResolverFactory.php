@@ -22,7 +22,7 @@ use Symfony\Component\HttpFoundation\Request;
 use function is_subclass_of;
 use function sprintf;
 
-class ApiDtoResolverFactory extends ApiDtoFactory
+class ApiDtoResolverFactory extends ApiDtoFactory implements ApiDtoResolverFactoryInterface
 {
     private ResolverFactoryInterface $resolverFactory;
 
@@ -33,11 +33,7 @@ class ApiDtoResolverFactory extends ApiDtoFactory
     }
 
     /**
-     * @param class-string<T> $className
-     *
-     * @return T
-     *
-     * @template T
+     * {@inheritDoc}
      */
     public function createApiCollectionDto(string $className): CollectionDtoResolverInterface
     {
@@ -53,12 +49,7 @@ class ApiDtoResolverFactory extends ApiDtoFactory
     }
 
     /**
-     * @param class-string<T> $className
-     * @param array<string, mixed> $data
-     *
-     * @return DtoResolverInterface
-     *
-     * @template T
+     * {@inheritDoc}
      */
     public function createApiDto(string $className, array $data): DtoResolverInterface
     {
@@ -74,14 +65,7 @@ class ApiDtoResolverFactory extends ApiDtoFactory
     }
 
     /**
-     * @param class-string<T> $className
-     * @param ApiRequest $apiRequest
-     * @param bool $withHeaders
-     * @param bool $withFiles
-     *
-     * @return T
-     *
-     * @template T
+     * {@inheritDoc}
      */
     public function createApiDtoByRequest(
         string $className,
