@@ -1,4 +1,6 @@
 ## [Unreleased]
+
+## [3.2.0] - 2022-05-19
 ### Added
 - File `.phpstorm.meta.php` idea friendly.
 - Installed `symfony/options-resolver` to the `~3.4||~4.0||~5.0` pattern version.
