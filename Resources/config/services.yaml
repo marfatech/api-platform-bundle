@@ -38,9 +38,6 @@ services:
         arguments:
             - '@Linkin\Bundle\SwaggerResolverBundle\Factory\SwaggerResolverFactory'
 
-    marfa_tech_api_platform.factory.api_dto:
-        alias:      MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoFactory
-
     MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoResolverFactoryInterface: '@marfa_tech_api_platform.factory.api_dto'
 
     MarfaTech\Bundle\ApiPlatformBundle\Logger\ApiPlatformLogger:
