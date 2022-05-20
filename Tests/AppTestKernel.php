@@ -19,8 +19,6 @@ class AppTestKernel extends Kernel
 
         if (in_array($this->getEnvironment(), ['test'], true)) {
             $bundles[] = new MarfaTechApiPlatformBundle();
-            $bundles[] = new LinkinSwaggerResolverBundle();
-            $bundles[] = new Bundle();
         }
 
         return $bundles;
