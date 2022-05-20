@@ -29,6 +29,13 @@
         "marfatech/swagger-resolver-bundle":    "^0.5.0"
     },
 
+    "repositories" : [
+        {
+            "type": "vcs",
+            "url": "git@github.com:marfatech/swagger-resolver-bundle.git"
+        }
+    ],
+
     "conflict": {
         "nelmio/api-doc-bundle": "<3.0"
     },
