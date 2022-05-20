@@ -13,17 +13,20 @@
         "symfony/dependency-injection":         "~4.4||~5.4||~6.0",
         "symfony/http-foundation":              "~4.4||~5.4||~6.0",
         "symfony/http-kernel":                  "~4.4||~5.4||~6.0",
+        "symfony/options-resolver":             "~4.4||~5.4||~6.0",
         "symfony/translation-contracts":        "^1.1||^2.2||^3.0",
         "marfatech/dto-resolver":               "^2.0"
     },
 
     "require-dev": {
+        "roave/security-advisories":            "dev-latest",
         "phpunit/phpunit":                      "^9.5",
         "symfony/phpunit-bridge":               "~4.4||~5.4||~6.0",
         "symfony/yaml":                         "~4.4||~5.4||~6.0",
         "symfony/validator":                    "~4.4||~5.4||^6.0",
         "symfony/monolog-bundle":               "^3.7",
-        "symfony/translation":                  "~4.4||~5.4||^6.0"
+        "symfony/translation":                  "~4.4||~5.4||^6.0",
+        "marfatech/swagger-resolver-bundle":    "^0.5.0"
     },
 
     "conflict": {
@@ -31,10 +34,10 @@
     },
 
     "suggest": {
-        "marfatech/swagger-resolver-bundle": "Provides possibility to resolve api entry dto by swagger definition",
-        "symfony/monolog-bundle":   "Provides possibility for log information into separate channel",
-        "symfony/translation":      "Provides possibility for translate response codes",
-        "symfony/validator":        "Provides possibility for catch constraint validation"
+        "marfatech/swagger-resolver-bundle":    "Provides possibility to resolve DTO by swagger definition",
+        "symfony/monolog-bundle":               "Provides possibility for log information into separate channel",
+        "symfony/translation":                  "Provides possibility for translate response codes",
+        "symfony/validator":                    "Provides possibility for catch constraint validation"
     },
 
     "autoload": {

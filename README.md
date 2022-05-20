@@ -15,8 +15,8 @@ Api Platform Bundle
 с соответствующем кодом ошибки. Полный список кодов ошибок доступен в виде констант в классе
 [ApiException](./Exception/ApiException.php).
 
-Для описания спецификации API обязательно использование
-[Swagger 2](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md)
+Для описания спецификации API рекомендуется использование
+[Swagger 2](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md) совместно с [swagger-resolver-bundle](https://github.com/marfatech/swagger-resolver-bundle)
 в одном из форматов:
 - [NelmioApiDocBundle](https://github.com/nelmio/NelmioApiDocBundle).
 - [swagger-php](https://github.com/zircote/swagger-php).
@@ -51,7 +51,6 @@ class AppKernel extends Kernel
         $bundles = [
             // ...
 
-            new Linkin\Bundle\SwaggerResolverBundle\LinkinSwaggerResolverBundle(),
             new MarfaTech\Bundle\ApiPlatformBundle\MarfaTechApiPlatformBundle(),
         ];
 
@@ -65,7 +64,7 @@ class AppKernel extends Kernel
 Конфигурация
 ------------
 
-Чтобы начать использовать бандл требуется определить создать и определить `guesser` - объект содержащий правила
+Чтобы начать использовать бандл, требуется определить создать и определить `guesser` - объект содержащий правила
 определения зоны API вашего проекта.
 
 ```php
@@ -139,7 +138,7 @@ marfa_tech_api_platform:
 Использование
 -------------
 
-Использование функционала бандла начинается с создание контроллера и первого метода в указанной зоне API.
+Использование функционала бандла начинается с создания контроллера и первого метода в указанной зоне API.
 В качестве примера рассмотрим возвращение простейшего профиля пользователя.
 
 Для начала нам необходимо создать DTO возвращаемых данных:

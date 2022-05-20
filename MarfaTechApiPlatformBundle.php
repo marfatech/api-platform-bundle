@@ -16,6 +16,7 @@ namespace MarfaTech\Bundle\ApiPlatformBundle;
 use MarfaTech\Bundle\ApiPlatformBundle\DependencyInjection\Compiler\ApiErrorCodeGuesserCompiler;
 use MarfaTech\Bundle\ApiPlatformBundle\DependencyInjection\Compiler\ApiKernelCompiler;
 use MarfaTech\Bundle\ApiPlatformBundle\DependencyInjection\Compiler\ApiResponseListenerCompiler;
+use MarfaTech\Bundle\ApiPlatformBundle\DependencyInjection\Compiler\OptionsResolverFactoryCompiler;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -32,6 +33,7 @@ class MarfaTechApiPlatformBundle extends Bundle
             ->addCompilerPass(new ApiErrorCodeGuesserCompiler())
             ->addCompilerPass(new ApiKernelCompiler())
             ->addCompilerPass(new ApiResponseListenerCompiler())
+            ->addCompilerPass(new OptionsResolverFactoryCompiler())
         ;
     }
 }

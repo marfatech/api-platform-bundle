@@ -13,28 +13,23 @@ declare(strict_types=1);
 
 namespace MarfaTech\Bundle\ApiPlatformBundle\Factory;
 
-use Linkin\Bundle\SwaggerResolverBundle\Factory\SwaggerResolverFactory;
 use MarfaTech\Bundle\ApiPlatformBundle\HttpFoundation\ApiRequest;
 use MarfaTech\Component\DtoResolver\Dto\CollectionDtoResolverInterface;
 use MarfaTech\Component\DtoResolver\Dto\DtoResolverInterface;
 use RuntimeException;
+use Symfony\Component\HttpFoundation\Request;
 
 use function is_subclass_of;
 use function sprintf;
 
-/**
- * @deprecated since 3.2, to be removed in 4.0, use MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoResolverFactory instead.
- */
-class ApiDtoFactory implements ApiDtoResolverFactoryInterface
+class ApiDtoResolverFactory extends ApiDtoFactory implements ApiDtoResolverFactoryInterface
 {
-    /**
-     * @var null|SwaggerResolverFactory
-     */
-    private $factory;
+    private ResolverFactoryInterface $resolverFactory;
 
-    public function __construct(SwaggerResolverFactory $factory = null)
-    {
-        $this->factory = $factory;
+    public function __construct(
+        ResolverFactoryInterface $resolverFactory
+    ) {
+        $this->resolverFactory = $resolverFactory;
     }
 
     /**
@@ -43,14 +38,12 @@ class ApiDtoFactory implements ApiDtoResolverFactoryInterface
     public function createApiCollectionDto(string $className): CollectionDtoResolverInterface
     {
         if (!is_subclass_of($className, CollectionDtoResolverInterface::class)) {
-            throw new RuntimeException(sprintf(
-                'Received class should implement "%s"',
-                CollectionDtoResolverInterface::class
-            ));
+            $message = sprintf('Received class should implement "%s"', CollectionDtoResolverInterface::class);
+
+            throw new RuntimeException($message);
         }
 
-        /** @var CollectionDtoResolverInterface $className */
-        $resolver = $this->factory?->createForDefinition($className::getItemDtoClassName());
+        $resolver = $this->resolverFactory->createForDefinition($className::getItemDtoClassName());
 
         return new $className($resolver);
     }
@@ -61,13 +54,12 @@ class ApiDtoFactory implements ApiDtoResolverFactoryInterface
     public function createApiDto(string $className, array $data): DtoResolverInterface
     {
         if (!is_subclass_of($className, DtoResolverInterface::class)) {
-            throw new RuntimeException(sprintf(
-                'Received class should implement "%s"',
-                DtoResolverInterface::class
-            ));
+            $message = sprintf('Received class should implement "%s"', DtoResolverInterface::class);
+
+            throw new RuntimeException($message);
         }
 
-        $resolver = $this->factory?->createForDefinition($className);
+        $resolver = $this->resolverFactory->createForDefinition($className);
 
         return new $className($data, $resolver);
     }
@@ -77,19 +69,18 @@ class ApiDtoFactory implements ApiDtoResolverFactoryInterface
      */
     public function createApiDtoByRequest(
         string $className,
-        ApiRequest $request,
+        ApiRequest $apiRequest,
         bool $withHeaders = false,
         bool $withFiles = false
     ): DtoResolverInterface {
         if (!is_subclass_of($className, DtoResolverInterface::class)) {
-            throw new RuntimeException(sprintf(
-                'Received class should implement "%s"',
-                DtoResolverInterface::class
-            ));
+            $message = sprintf('Received class should implement "%s"', DtoResolverInterface::class);
+
+            throw new RuntimeException($message);
         }
 
-        $resolver = $this->factory?->createForRequest($request);
-        $data = $this->getDataForRequest($request, $withHeaders, $withFiles);
+        $resolver = $this->resolverFactory->createForRequest($apiRequest);
+        $data = $this->getDataForRequest($apiRequest, $withHeaders, $withFiles);
 
         return new $className($data, $resolver);
     }
@@ -117,19 +108,19 @@ class ApiDtoFactory implements ApiDtoResolverFactoryInterface
     }
 
     /**
-     * @param ApiRequest $request
+     * @param ApiRequest $apiRequest
      *
      * @return array
      */
-    private function getRequestDataByMethod(ApiRequest $request): array
+    private function getRequestDataByMethod(ApiRequest $apiRequest): array
     {
-        $requestMethod = $request->getMethod();
-        $data = $request->attributes->all();
+        $requestMethod = $apiRequest->getMethod();
+        $data = $apiRequest->attributes->all();
 
-        if ($requestMethod === ApiRequest::METHOD_GET || $requestMethod === ApiRequest::METHOD_DELETE) {
-            return $data + $request->query->all();
+        if ($requestMethod === Request::METHOD_GET || $requestMethod === Request::METHOD_DELETE) {
+            return $data + $apiRequest->query->all();
         }
 
-        return $data + $request->body->all() + $request->request->all();
+        return $data + $apiRequest->body->all() + $apiRequest->request->all();
     }
 }

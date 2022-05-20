@@ -7,6 +7,15 @@
 - Updated `symfony/*` with pattern version `~4.4||~5.4||~6.0`.
 - Moved `marfatech/swagger-resolver-bundle` from required to suggested
 
+## [3.2.0] - 2022-05-19
+### Added
+- File `.phpstorm.meta.php` idea friendly.
+- Installed `symfony/options-resolver` to the `~3.4||~4.0||~5.0` pattern version.
+### Changed
+- Factory `MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoFactory` is deprecated, if you need decorate then extend `ApiDtoResolverFactory` and decorate service `marfa_tech_api_platform.factory.api_dto`.
+### Removed
+- Deleted `marfatech/swagger-resolver-bundle`.
+
 ## [3.1.0] - 2022-05-17
 ## Added
 - Handling `Symfony\Component\Validator\Exception\ValidationFailedException` while resolving entryDto if you prefer to use constraints from `symfony/validation`.
