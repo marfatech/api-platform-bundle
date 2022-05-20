@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Factory;
 
 use MarfaTech\Bundle\ApiPlatformBundle\Dto\DummyDto;
-use MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoFactory;
+use MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoResolverFactory;
 use MarfaTech\Bundle\ApiPlatformBundle\Tests\AppTestKernel;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class ApiDtoFactoryTest extends TestCase
+class ApiDtoResolverFactoryTest extends TestCase
 {
     protected ContainerInterface $container;
 
@@ -23,12 +23,14 @@ class ApiDtoFactoryTest extends TestCase
         $this->container = $kernel->getContainer();
     }
 
-    public function testApiDtoFactory(): void
+    public function testApiDtoResolverFactory(): void
     {
-        $apiDtoFactory = $this->container->get(ApiDtoFactory::class);
+        $apiDtoFactory = $this->container->get('api_dto_resolver_factory_test');
+        self:self::assertInstanceOf(ApiDtoResolverFactory::class, $apiDtoFactory);
+
         $dto = $apiDtoFactory->createApiDto(DummyDto::class, ['string' => 'testString']);
 
-        self:self::assertInstanceOf(DummyDto::class, $dto);
+        self::assertInstanceOf(DummyDto::class, $dto);
         self::assertSame( 'testString', $dto->getString());
     }
 }

@@ -13,16 +13,7 @@ class DummyApiAreaGuesser implements ApiAreaGuesserInterface
      */
     public function getApiVersion(Request $request): ?int
     {
-        $apiVersionMatch = [];
-        preg_match('/^\/v([\d]+)\//i', $request->getPathInfo(), $apiVersionMatch);
-
-        if (empty($apiVersionMatch)) {
-            return null;
-        }
-
-        $apiVersion = (int) end($apiVersionMatch);
-
-        return $apiVersion;
+        return 1;
     }
 
     /**
@@ -30,6 +21,6 @@ class DummyApiAreaGuesser implements ApiAreaGuesserInterface
      */
     public function isApiRequest(Request $request): bool
     {
-        return strpos($request->getPathInfo(), '/api') === 0;
+        return true;
     }
 }

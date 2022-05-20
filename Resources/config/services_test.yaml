@@ -7,6 +7,6 @@ services:
 
     http_kernel:
 
-    MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoFactory:
+    api_dto_resolver_factory_test:
+        alias: MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoResolverFactory
         public: true
-        autowire: true

@@ -28,11 +28,11 @@ use function sprintf;
 class ApiDtoFactory implements ApiDtoResolverFactoryInterface
 {
     /**
-     * @var null|SwaggerResolverFactory
+     * @var SwaggerResolverFactory
      */
     private $factory;
 
-    public function __construct(SwaggerResolverFactory $factory = null)
+    public function __construct(SwaggerResolverFactory $factory)
     {
         $this->factory = $factory;
     }
@@ -50,7 +50,7 @@ class ApiDtoFactory implements ApiDtoResolverFactoryInterface
         }
 
         /** @var CollectionDtoResolverInterface $className */
-        $resolver = $this->factory?->createForDefinition($className::getItemDtoClassName());
+        $resolver = $this->factory->createForDefinition($className::getItemDtoClassName());
 
         return new $className($resolver);
     }
@@ -67,7 +67,7 @@ class ApiDtoFactory implements ApiDtoResolverFactoryInterface
             ));
         }
 
-        $resolver = $this->factory?->createForDefinition($className);
+        $resolver = $this->factory->createForDefinition($className);
 
         return new $className($data, $resolver);
     }
@@ -88,7 +88,7 @@ class ApiDtoFactory implements ApiDtoResolverFactoryInterface
             ));
         }
 
-        $resolver = $this->factory?->createForRequest($request);
+        $resolver = $this->factory->createForRequest($request);
         $data = $this->getDataForRequest($request, $withHeaders, $withFiles);
 
         return new $className($data, $resolver);

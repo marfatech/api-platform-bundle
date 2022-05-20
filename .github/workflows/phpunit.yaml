@@ -22,10 +22,9 @@ jobs:
 
       - name: Composer install and lock options resolver
         run: |
-          composer require symfony/options-resolver:${{ matrix.symfony-versions }} \
-          symfony/http-kernel:${{ matrix.symfony-versions }} \
-          symfony/http-foundation:${{ matrix.symfony-versions }} \
-          symfony/dependency-injection:${{ matrix.symfony-versions }}
+          export SYMFONY_REQUIRE=${{ matrix.symfony-versions }} \
+          && composer global require --no-progress --no-scripts --no-plugins symfony/flex \
+          && composer install --prefer-dist --no-progress --no-dev
 
       - name: Run tests
         run: |
