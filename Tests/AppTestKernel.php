@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace MarfaTech\Bundle\ApiPlatformBundle\Tests;
 
+use Linkin\Bundle\SwaggerResolverBundle\LinkinSwaggerResolverBundle;
 use MarfaTech\Bundle\ApiPlatformBundle\MarfaTechApiPlatformBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\HttpKernel\Kernel;
@@ -18,6 +19,8 @@ class AppTestKernel extends Kernel
 
         if (in_array($this->getEnvironment(), ['test'], true)) {
             $bundles[] = new MarfaTechApiPlatformBundle();
+            $bundles[] = new LinkinSwaggerResolverBundle();
+            $bundles[] = new Bundle();
         }
 
         return $bundles;
@@ -29,7 +32,6 @@ class AppTestKernel extends Kernel
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
         $loader->load(__DIR__ . '/config.yaml');
-//        $loader->load(__DIR__ . '/../Resources/config/services.yaml');
         $loader->load(__DIR__ . '/../Resources/config/services_test.yaml');
     }
 
