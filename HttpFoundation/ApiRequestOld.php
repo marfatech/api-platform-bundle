@@ -18,7 +18,10 @@ use Symfony\Component\HttpFoundation\Request;
 
 use function json_decode;
 
-class ApiRequest extends Request
+/**
+ * @deprecated
+ */
+class ApiRequestOld extends Request
 {
     /**
      * Request parameters from the content, which has been received as JSON.
@@ -74,7 +77,7 @@ class ApiRequest extends Request
     /**
      * {@inheritdoc}
      */
-    public function get($key, $default = null): mixed
+    public function get($key, $default = null)
     {
         if ($this !== $result = $this->body->get($key, $this)) {
             return $result;

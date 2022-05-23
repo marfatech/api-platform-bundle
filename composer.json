@@ -49,6 +49,7 @@
     "autoload": {
         "psr-4": {
             "MarfaTech\\Bundle\\ApiPlatformBundle\\": ""
-        }
+        },
+        "files": ["aliases.php"]
     }
 }
