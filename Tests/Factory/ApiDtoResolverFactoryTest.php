@@ -31,6 +31,6 @@ class ApiDtoResolverFactoryTest extends TestCase
         $dto = $apiDtoFactory->createApiDto(DummyDto::class, ['string' => 'testString']);
 
         self::assertInstanceOf(DummyDto::class, $dto);
-        self::assertSame( 'testString', $dto->getString());
+        self::assertSame('testString', $dto->getString());
     }
 }
