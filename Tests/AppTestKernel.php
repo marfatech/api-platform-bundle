@@ -9,6 +9,7 @@ use MarfaTech\Bundle\ApiPlatformBundle\MarfaTechApiPlatformBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\HttpKernel\Kernel;
 
+use function in_array;
 use function sys_get_temp_dir;
 
 class AppTestKernel extends Kernel
