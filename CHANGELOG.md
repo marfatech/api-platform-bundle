@@ -1,4 +1,6 @@
 ## [Unreleased]
+
+## [3.3.0] - 2022-05-24
 ### Added
 - Symfony 6 support
 - Test for `ApiDtoFactory`
