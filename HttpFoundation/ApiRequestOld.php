@@ -122,7 +122,7 @@ class ApiRequestOld extends Request
         ?array $files = null,
         ?array $server = null,
         ?string $content = null
-    ): static {
+    ): self {
         /** @var self $duplicate */
         $duplicate = parent::duplicate($query, $request, $attributes, $cookies, $files, $server);
 
