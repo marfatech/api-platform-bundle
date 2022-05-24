@@ -1,0 +1,8 @@
+.gitattributes                                  export-ignore
+.gitignore                                      export-ignore
+phpunit.xml.dist                                export-ignore
+Resources/config/services_test.yaml             export-ignore
+Tests/                                          export-ignore
+.github/                                        export-ignore
+Guesser/DummyApiAreaGuesser.php                 export-ignore
+Dto/DummyDto.php                                export-ignore

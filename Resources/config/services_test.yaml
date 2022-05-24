@@ -1,0 +1,12 @@
+services:
+    MarfaTech\Bundle\ApiPlatformBundle\Guesser\ApiErrorCodeGuesser:
+        class: MarfaTech\Bundle\ApiPlatformBundle\Guesser\ApiErrorCodeGuesser
+
+    MarfaTech\Bundle\ApiPlatformBundle\Guesser\DummyApiAreaGuesser:
+        class: MarfaTech\Bundle\ApiPlatformBundle\Guesser\DummyApiAreaGuesser
+
+    http_kernel:
+
+    api_dto_resolver_factory_test:
+        alias: MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoResolverFactory
+        public: true

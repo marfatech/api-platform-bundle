@@ -32,9 +32,6 @@ class ApiDtoFactory implements ApiDtoResolverFactoryInterface
      */
     private $factory;
 
-    /**
-     * @param SwaggerResolverFactory $factory
-     */
     public function __construct(SwaggerResolverFactory $factory)
     {
         $this->factory = $factory;
