@@ -13,26 +13,33 @@ declare(strict_types=1);
 
 namespace MarfaTech\Bundle\ApiPlatformBundle\Factory;
 
-use Linkin\Bundle\SwaggerResolverBundle\Factory\SwaggerResolverFactory;
+use Exception;
+use Linkin\Bundle\SwaggerResolverBundle\Factory\OpenApiResolverFactory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class SwaggerResolverFactoryWrapper implements ResolverFactoryInterface
+class OpenApiResolverFactoryWrapper implements ResolverFactoryInterface
 {
-    private SwaggerResolverFactory $swaggerResolverFactory;
+    private OpenApiResolverFactory $openApiResolverFactory;
 
-    public function __construct(SwaggerResolverFactory $swaggerResolverFactory)
+    public function __construct(OpenApiResolverFactory $swaggerResolverFactory)
     {
-        $this->swaggerResolverFactory = $swaggerResolverFactory;
+        $this->openApiResolverFactory = $swaggerResolverFactory;
     }
 
+    /**
+     * @throws Exception
+     */
     public function createForRequest(Request $request): OptionsResolver
     {
-        return $this->swaggerResolverFactory->createForRequest($request);
+        return $this->openApiResolverFactory->createForRequest($request);
     }
 
+    /**
+     * @throws Exception
+     */
     public function createForDefinition(string $definitionName): OptionsResolver
     {
-        return $this->swaggerResolverFactory->createForDefinition($definitionName);
+        return $this->openApiResolverFactory->createForSchema($definitionName);
     }
 }

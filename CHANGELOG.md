@@ -1,4 +1,6 @@
 ## [Unreleased]
+### Added
+- Support versions `>=1.0` of `marfatech/swagger-resolver-bundle`.
 
 ## [3.3.1] - 2022-05-30
 ### Added
