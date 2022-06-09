@@ -24,6 +24,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Controller\ArgumentValueResolverInterface;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
 use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
+use Symfony\Component\OptionsResolver\Exception\MissingOptionsException;
 use Symfony\Component\Validator\Exception\ValidationFailedException;
 use Throwable;
 
@@ -86,12 +87,10 @@ class ApiEntryDtoArgumentResolver implements ArgumentValueResolverInterface, Log
             }
 
             throw new ApiException(ApiException::HTTP_BAD_REQUEST_DATA, $message);
-        } catch (InvalidOptionsException $e) {
+        } catch (InvalidOptionsException | MissingOptionsException $e) {
             throw new ApiException(ApiException::HTTP_BAD_REQUEST_DATA, $e->getMessage());
         } catch (Throwable $e) {
-            if ($this->logger) {
-                $this->logger->notice('Unexpected error while argument resolving', [$e]);
-            }
+            $this->logger?->notice('Unexpected error while argument resolving', [$e]);
 
             throw new ApiException(ApiException::HTTP_BAD_REQUEST_DATA);
         }
