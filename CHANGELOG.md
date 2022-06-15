@@ -1,4 +1,6 @@
 ## [Unreleased]
+
+## [3.3.2] - 2022-06-15
 ### Fixed
 - Catch `MissingOptionsException` as 4xx http status code while resolve request.
 
