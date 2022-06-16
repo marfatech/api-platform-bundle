@@ -2,6 +2,10 @@
 ### Added
 - Support versions `>=1.0` of `marfatech/swagger-resolver-bundle`.
 
+## [3.3.2] - 2022-06-15
+### Fixed
+- Catch `MissingOptionsException` as 4xx http status code while resolve request.
+
 ## [3.3.1] - 2022-05-30
 ### Added
 - Conflict with version `>=1.0` of `marfatech/swagger-resolver-bundle`. 
