@@ -25,6 +25,10 @@ class OptionsResolverFactoryCompiler implements CompilerPassInterface
         if ($container->hasDefinition(SwaggerResolverFactory::class)) {
             $swaggerResolverFactory = $container->getDefinition(SwaggerResolverFactory::class);
 
+            $apiDtoFactory = new Definition(ApiDtoFactory::class);
+            $apiDtoFactory->addArgument($swaggerResolverFactory);
+            $container->setDefinition(ApiDtoFactory::class, $apiDtoFactory);
+
             $swaggerResolverFactoryWrapper = new Definition(SwaggerResolverFactoryWrapper::class);
             $swaggerResolverFactoryWrapper->addArgument($swaggerResolverFactory);
 

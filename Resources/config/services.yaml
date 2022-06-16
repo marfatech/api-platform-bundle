@@ -33,11 +33,6 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.request, priority: 128 }
 
-    MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoFactory:
-        class:      MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoFactory
-        arguments:
-            - '@Linkin\Bundle\SwaggerResolverBundle\Factory\SwaggerResolverFactory'
-
     MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoResolverFactoryInterface: '@marfa_tech_api_platform.factory.api_dto'
 
     MarfaTech\Bundle\ApiPlatformBundle\Logger\ApiPlatformLogger:
