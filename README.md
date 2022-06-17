@@ -12,11 +12,11 @@ Api Platform Bundle
 
 Предоставляется работа с контентом запроса в формате `JSON` посредством `ParameterBag`.
 Архитектура бандла не допускает фатального падения в зоне API и всегда возвращает валидный ответ
-с соответствующем кодом ошибки. Полный список кодов ошибок доступен в виде констант в классе
+с соответствующим кодом ошибки. Полный список кодов ошибок доступен в виде констант в классе
 [ApiException](./Exception/ApiException.php).
 
 Для описания спецификации API рекомендуется использование
-[Swagger 2](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md) совместно с [swagger-resolver-bundle](https://github.com/marfatech/swagger-resolver-bundle)
+[OpenApi 3](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.0.md) совместно с [swagger-resolver-bundle](https://github.com/marfatech/swagger-resolver-bundle)
 в одном из форматов:
 - [NelmioApiDocBundle](https://github.com/nelmio/NelmioApiDocBundle).
 - [swagger-php](https://github.com/zircote/swagger-php).
@@ -109,7 +109,7 @@ class ApiAreaGuesser implements ApiAreaGuesserInterface
 **Примечание:** Если вы не используете `autowire` то вам необходимо зарегистрировать `ApiAreaGuesser` как сервис.
 
 ```yaml
-# app/config.yml
+# config/packages/marfa_tech_api_platform.yaml
 marfa_tech_api_platform:
     api_area_guesser_service:   App\Guesser\ApiAreaGuesser
 ```
@@ -117,7 +117,7 @@ marfa_tech_api_platform:
 ### Полный набор параметров
 
 ```yaml
-# app/config.yml
+# config/packages/marfa_tech_api_platform.yaml
 marfa_tech_api_platform:
     # полное имя класса DTO для стандартизации ответа
     api_result_dto_class:       MarfaTech\Bundle\ApiPlatformBundle\Dto\ApiResultDto
@@ -148,12 +148,12 @@ marfa_tech_api_platform:
 
 namespace App\Dto;
 
-use Swagger\Annotations as SWG;
+use OpenApi\Annotations as OA;
 use MarfaTech\Component\DtoResolver\Dto\DtoResolverTrait;
 use MarfaTech\Component\DtoResolver\Dto\DtoResolverInterface;
 
 /**
- * @SWG\Definition(
+ * @SWG\Schema(
  *      type="object",
  *      description="Profile info",
  *      required={"email", "firstName", "lastName"},
@@ -164,45 +164,30 @@ class ProfileResultDto implements DtoResolverInterface
     use DtoResolverTrait;
     
     /**
-     * @var string
-     *
-     * @SWG\Property(description="Profile email", example="test@gmail.com")
+     * @OA\Property(description="Profile email", example="test@gmail.com")
      */
-    protected $email;
+    protected string $email;
 
     /**
-     * @var string
-     *
-     * @SWG\Property(description="User's first name", example="John")
+     * @OA\Property(description="User's first name", example="John")
      */
-    protected $firstName;
+    protected string $firstName;
 
     /**
-     * @var string
-     *
-     * @SWG\Property(description="User's last name", example="Doe")
+     * @OA\Property(description="User's last name", example="Doe")
      */
-    protected $lastName;
+    protected string $lastName;
 
-    /**
-     * @return string
-     */
     public function getEmail(): string
     {
         return $this->email;
     }
 
-    /**
-     * @return string
-     */
     public function getFirstName(): string
     {
         return $this->firstName;
     }
 
-    /**
-     * @return string
-     */
     public function getLastName(): string
     {
         return $this->lastName;
@@ -221,10 +206,11 @@ namespace App\Controller;
 
 use App\Dto\ProfileResultDto;
 use Nelmio\ApiDocBundle\Annotation\Model;
-use Swagger\Annotations as SWG;
+use OpenApi\Annotations as OA;
 use Symfony\Component\Routing\Annotation\Route;
 use MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoFactory;
 use MarfaTech\Bundle\ApiPlatformBundle\HttpFoundation\ApiResponse;
+use MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoResolverFactoryInterface;
 
 /**
  * @Route("/api/profile")
@@ -236,17 +222,14 @@ class ProfileController
      *
      * @Route(methods={"GET"})
      *
-     * @SWG\Response(
+     * @OA\Response(
      *      response=ApiResponse::HTTP_OK,
      *      description="Successful result in 'data' offset",
-     *      @Model(type=ProfileResultDto::class)
+     *      @Model(type=ProfileResultDto::class),
+     *      
      * )
-     *
-     * @param ApiDtoFactory $factory
-     *
-     * @return ApiResponse
      */
-    public function getProfile(ApiDtoFactory $factory): ApiResponse
+    public function getProfile(ApiDtoResolverFactoryInterface $factory): ApiResponse
     {
         // обработка данных
 
@@ -273,12 +256,12 @@ class ProfileController
 
 namespace App\Dto;
 
-use Swagger\Annotations as SWG;
+use OpenApi\Annotations as OA;
 use MarfaTech\Bundle\ApiPlatformBundle\Dto\MagicAwareDtoResolverTrait;
 use MarfaTech\Component\DtoResolver\Dto\DtoResolverInterface;
 
 /**
- * @SWG\Definition(
+ * @OA\Schema(
  *      type="object",
  *      description="Update profile info",
  *      required={"firstName", "lastName"},
@@ -290,36 +273,23 @@ class UpdateProfileEntryDto implements DtoResolverInterface
 {
     use MagicAwareDtoResolverTrait;
     
-    /**
-     * @var string
-     */
-    protected $email;
+    protected string $email;
 
     /**
-     * @var string
-     *
-     * @SWG\Property(description="User's first name", example="John")
+     * @OA\Property(description="User's first name", example="John")
      */
-    protected $firstName;
+    protected string $firstName;
 
     /**
-     * @var string
-     *
-     * @SWG\Property(description="User's last name", example="Doe")
+     * @OA\Property(description="User's last name", example="Doe")
      */
-    protected $lastName;
+    protected string $lastName;
 
-    /**
-     * @return string
-     */
     public function getFirstName(): string
     {
         return $this->firstName;
     }
 
-    /**
-     * @return string
-     */
     public function getLastName(): string
     {
         return $this->lastName;
@@ -336,7 +306,7 @@ namespace App\Controller;
 
 use App\Dto\UpdateProfileEntryDto;
 use Nelmio\ApiDocBundle\Annotation\Model;
-use Swagger\Annotations as SWG;
+use OpenApi\Annotations as OA;
 use Symfony\Component\Routing\Annotation\Route;
 use MarfaTech\Bundle\ApiPlatformBundle\HttpFoundation\ApiResponse;
 
@@ -350,12 +320,8 @@ class ProfileController
      *
      * @Route("/{email}", methods={"PATCH"})
      *
-     * @SWG\Parameter(name="email", in="path", type="string", required=true, description="User email")
-     * @SWG\Parameter(name="body", in="body", @Model(type=UpdateProfileEntryDto::class), required=true)
-     *
-     * @param UpdateProfileEntryDto $entryDto
-     *
-     * @return ApiResponse
+     * @OA\Parameter(name="email", in="path", @OA\Schema(type="string"), required=true, description="User email")
+     * @OA\RequestBody(required=true, @Model(type=UpdateProfileEntryDto::class))
      */
     public function getProfile(UpdateProfileEntryDto $entryDto): ApiResponse
     {
@@ -376,12 +342,12 @@ class ProfileController
 
 namespace App\Dto;
 
-use Swagger\Annotations as SWG;
+use OpenApi\Annotations as OA;
 use MarfaTech\Bundle\ApiPlatformBundle\Dto\ApiResultDto as BaseApiResultDto;
 use MarfaTech\Component\DtoResolver\Dto\DtoResolverInterface;
 
 /**
- * @SWG\Definition(
+ * @OA\Schema(
  *      type="object",
  *      description="Common API response object template",
  *      required={"code", "message"},
@@ -392,21 +358,21 @@ class ApiResultDto extends BaseApiResultDto
     /**
      * @var int
      *
-     * @SWG\Property(description="Response api code", example=0, default=0)
+     * @OA\Property(description="Response api code", example=0, default=0)
      */
     protected $code = 0;
 
     /**
      * @var string
      *
-     * @SWG\Property(description="Localized human readable text", example="Successfully")
+     * @OA\Property(description="Localized human readable text", example="Successfully")
      */
     protected $message;
 
     /**
      * @var DtoResolverInterface|null
      *
-     * @SWG\Property(type="object", description="Some specific response data or null")
+     * @OA\Property(type="object", description="Some specific response data or null")
      */
     protected $data = null;
 }
@@ -416,7 +382,7 @@ class ApiResultDto extends BaseApiResultDto
 **Шаг 2** Добавьте в конфигурацию:
 
 ```yaml
-# app/config.yml
+# config/packages/marfa_tech_api_platform.yaml
 marfa_tech_api_platform:
     api_result_dto_class:       App\Dto\MyApiResultDto
 ```
@@ -427,30 +393,26 @@ marfa_tech_api_platform:
 <?php declare(strict_types=1);
 
 use Nelmio\ApiDocBundle\Annotation\Model;
-use Swagger\Annotations as SWG;
+use OpenApi\Annotations as OA;
 use MarfaTech\Bundle\ApiPlatformBundle\HttpFoundation\ApiRequest;
 use MarfaTech\Bundle\ApiPlatformBundle\HttpFoundation\ApiResponse;
 use MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoFactory;
+use MarfaTech\Bundle\ApiPlatformBundle\Factory\ApiDtoResolverFactoryInterface;
 
 class ProfileController
 {
     /**
      * ...
      * 
-     * @SWG\Parameter(name="username", in="query", type="string", required=true, description="User login")
-     * @SWG\Response(
+     * @OA\Parameter(name="username", in="query", @OA\Schema(type="string"), required=true, description="User login")
+     * @OA\Response(
      *      response=ApiResponse::HTTP_OK,
      *      description="Successful result in 'data' offset",
-     *      @Model(type=ProfileResultDto::class)
+     *      @Model(type=ProfileResultDto::class),
      * )
-     * @SWG\Response(response="default", @Model(type=ApiResultDto::class), description="Response wrapper")
-     *
-     * @param ApiRequest $apiRequest
-     * @param ApiDtoFactory $factory
-     * 
-     * @return ApiResponse
+     * @OA\Response(response="default", @Model(type=ApiResultDto::class), description="Response wrapper")
      */
-    public function getProfile(ApiRequest $apiRequest, ApiDtoFactory $factory): ApiResponse
+    public function getProfile(ApiRequest $apiRequest, ApiDtoResolverFactoryInterface $factory): ApiResponse
     {
         return new ApiResponse();
     }
