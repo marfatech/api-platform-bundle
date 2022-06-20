@@ -153,7 +153,7 @@ use MarfaTech\Component\DtoResolver\Dto\DtoResolverTrait;
 use MarfaTech\Component\DtoResolver\Dto\DtoResolverInterface;
 
 /**
- * @SWG\Schema(
+ * @OA\Schema(
  *      type="object",
  *      description="Profile info",
  *      required={"email", "firstName", "lastName"},
