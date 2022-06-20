@@ -90,9 +90,7 @@ class ApiEntryDtoArgumentResolver implements ArgumentValueResolverInterface, Log
         } catch (InvalidOptionsException | MissingOptionsException $e) {
             throw new ApiException(ApiException::HTTP_BAD_REQUEST_DATA, $e->getMessage());
         } catch (Throwable $e) {
-            if ($this->logger) {
-                $this->logger->notice('Unexpected error while argument resolving', [$e]);
-            }
+            $this->logger?->notice('Unexpected error while argument resolving', [$e]);
 
             throw new ApiException(ApiException::HTTP_BAD_REQUEST_DATA);
         }

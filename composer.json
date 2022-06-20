@@ -36,8 +36,8 @@
     ],
 
     "conflict": {
-        "nelmio/api-doc-bundle":                "<3.0",
-        "marfatech/swagger-resolver-bundle":    ">=1.0"
+        "nelmio/api-doc-bundle":                "<4.9",
+        "marfatech/swagger-resolver-bundle":    "<1.0"
     },
 
     "suggest": {
