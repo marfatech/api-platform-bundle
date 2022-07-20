@@ -22,10 +22,14 @@ jobs:
         env:
           COMPOSER_TOKEN: ${{ secrets.COMPOSER_TOKEN }}
 
-      - name: Composer install and lock symfony
-        run: |
-          export SYMFONY_REQUIRE=${{ matrix.symfony-versions }} \
-          && composer install --prefer-dist --no-progress
+      - name: Export Symfony version ${{ matrix.symfony }}
+        run: export SYMFONY_REQUIRE=${{ matrix.symfony }}
+
+      - name: Composer update on php ${{ matrix.php }} and symfony ${{ matrix.symfony }}
+        run: composer update --prefer-dist --no-progress
+
+      - name: Composer update on php ${{ matrix.php }} and symfony ${{ matrix.symfony }}
+        run: SYMFONY_REQUIRE=${{ matrix.symfony }} composer update --prefer-dist --no-progress
 
       - name: Run tests
         run: |
