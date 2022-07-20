@@ -19,6 +19,8 @@ jobs:
         with:
           php-version: ${{ matrix.php-versions }}
           tools: composer
+        env:
+          COMPOSER_TOKEN: ${{ secrets.COMPOSER_TOKEN }}
 
       - name: Composer install and lock symfony
         run: |
