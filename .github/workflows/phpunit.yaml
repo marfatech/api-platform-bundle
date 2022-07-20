@@ -22,6 +22,9 @@ jobs:
         env:
           COMPOSER_TOKEN: ${{ secrets.COMPOSER_TOKEN }}
 
+      - name: Configure symfony/flex
+        run: composer config --no-plugins allow-plugins.symfony/flex true
+
       - name: Export Symfony version ${{ matrix.symfony }}
         run: export SYMFONY_REQUIRE=${{ matrix.symfony }}
 
