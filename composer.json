@@ -47,6 +47,12 @@
         "symfony/validator":                    "Provides possibility for catch constraint validation"
     },
 
+    "config": {
+        "allow-plugins": {
+            "symfony/flex": true
+        }
+    },
+
     "autoload": {
         "psr-4": {
             "MarfaTech\\Bundle\\ApiPlatformBundle\\": ""
