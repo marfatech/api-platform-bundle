@@ -53,10 +53,5 @@
             "MarfaTech\\Bundle\\ApiPlatformBundle\\": ""
         },
         "files": ["aliases.php"]
-    },
-    "config": {
-        "allow-plugins": {
-            "symfony/flex": true
-        }
     }
 }
