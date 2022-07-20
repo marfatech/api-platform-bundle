@@ -27,8 +27,11 @@ jobs:
       - name: Configure symfony/flex
         run: composer config --no-plugins allow-plugins.symfony/flex true
 
-      - name: Export Symfony version ${{ matrix.symfony-versions }}
-        run: export SYMFONY_REQUIRE=${{ matrix.symfony-versions }}
+      - name: Configure symfony extra
+        run: composer config extra.symfony.require "${{ matrix.symfony-version }}"
+
+#      - name: Export Symfony version ${{ matrix.symfony-versions }}
+#        run: export SYMFONY_REQUIRE=${{ matrix.symfony-versions }}
 
       - name: Composer install on php ${{ matrix.php-versions }} and symfony ${{ matrix.symfony-versions }}
         run: composer install --prefer-dist --no-progress
