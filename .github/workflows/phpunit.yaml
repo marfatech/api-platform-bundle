@@ -29,7 +29,7 @@ jobs:
         run: export SYMFONY_REQUIRE=${{ matrix.symfony }}
 
       - name: Composer update on php ${{ matrix.php }} and symfony ${{ matrix.symfony }}
-        run: SYMFONY_REQUIRE=${{ matrix.symfony }} composer update --prefer-dist --no-progress
+        run: composer update --prefer-dist --no-progress
 
       - name: Run tests
         run: |
