@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         php-versions: ['8.0', '8.1']
-        symfony-versions: ['~4.4', '~5.4', '~6.0']
+        symfony: ['~4.4', '~5.4', '~6.0']
 
     steps:
       - name: Checkout
@@ -17,16 +17,13 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php-versions }}
+          php-version: ${{ matrix.php }}
           tools: composer
         env:
           COMPOSER_TOKEN: ${{ secrets.COMPOSER_TOKEN }}
 
       - name: Export Symfony version ${{ matrix.symfony }}
         run: export SYMFONY_REQUIRE=${{ matrix.symfony }}
-
-      - name: Composer update on php ${{ matrix.php }} and symfony ${{ matrix.symfony }}
-        run: composer update --prefer-dist --no-progress
 
       - name: Composer update on php ${{ matrix.php }} and symfony ${{ matrix.symfony }}
         run: SYMFONY_REQUIRE=${{ matrix.symfony }} composer update --prefer-dist --no-progress
