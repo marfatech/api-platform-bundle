@@ -7,8 +7,8 @@ jobs:
     runs-on: 'ubuntu-latest'
     strategy:
       matrix:
-        php: ['8.0', '8.1']
-        symfony: ['~4.4', '~5.4', '~6.0']
+        php-versions: ['8.0', '8.1']
+        symfony-versions: ['~4.4', '~5.4', '~6.0']
 
     steps:
       - name: Checkout
@@ -17,7 +17,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php }}
+          php-version: ${{ matrix.php-versions }}
           tools: composer
         env:
           COMPOSER_TOKEN: ${{ secrets.COMPOSER_TOKEN }}
@@ -25,10 +25,10 @@ jobs:
       - name: Configure symfony/flex
         run: composer config --no-plugins allow-plugins.symfony/flex true
 
-      - name: Export Symfony version ${{ matrix.symfony }}
-        run: export SYMFONY_REQUIRE=${{ matrix.symfony }}
+      - name: Export Symfony version ${{ matrix.symfony-versions }}
+        run: export SYMFONY_REQUIRE=${{ matrix.symfony-versions }}
 
-      - name: Composer update on php ${{ matrix.php }} and symfony ${{ matrix.symfony }}
+      - name: Composer update on php ${{ matrix.php-versions }} and symfony ${{ matrix.symfony-versions }}
         run: composer update --prefer-dist --no-progress
 
       - name: Run tests

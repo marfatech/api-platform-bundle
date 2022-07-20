@@ -25,8 +25,7 @@
         "symfony/yaml":                         "~4.4||~5.4||~6.0",
         "symfony/validator":                    "~4.4||~5.4||^6.0",
         "symfony/monolog-bundle":               "^3.7",
-        "symfony/translation":                  "~4.4||~5.4||^6.0",
-        "symfony/flex":                         "^2.2"
+        "symfony/translation":                  "~4.4||~5.4||^6.0"
     },
 
     "repositories" : [
